@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhansetu | Skill-Based Trading Competition</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        :root {
+            --primary: #001a33;
+            --secondary: #008080;
+            --accent: #FFD700;
+            --light: #f5f7fa;
+            --gray: #e5e7eb;
+            --dark: #1e293b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--secondary);
+            border: 2px solid var(--secondary);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #003366 100%);
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,215,0,0.1)"/></svg>');
+            background-size: cover;
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-text {
+            flex: 1;
+            padding-right: 40px;
+        }
+        
+        .hero-text h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-text p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .hero-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 450px;
+            color: var(--dark);
+        }
+        
+        .hero-card h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-align: center;
+        }
+        
+        .prize-counter {
+            background: var(--accent);
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 24px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        /* Challenges Section */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--secondary);
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .challenges-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .challenge-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 2px solid var(--gray);
+        }
+        
+        .challenge-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-color: var(--secondary);
+        }
+        
+        .challenge-header {
+            padding: 25px;
+            background: var(--primary);
+            color: white;
+            text-align: center;
+        }
+        
+        .challenge-header h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        
+        .challenge-price {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .challenge-body {
+            padding: 25px;
+        }
+        
+        .challenge-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        
+        .challenge-features li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .challenge-features li i {
+            color: var(--secondary);
+            margin-right: 10px;
+        }
+        
+        .challenge-reward {
+            text-align: center;
+            font-weight: 600;
+            font-size: 20px;
+            color: var(--secondary);
+            margin: 15px 0;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            background-color: var(--light);
+        }
+        
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .step-card {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin: 0 15px 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--secondary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        
+        .step-card h3 {
+            margin: 15px 0;
+            color: var(--primary);
+        }
+        
+        /* Winners Section */
+        .winners-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .winner-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .winner-header {
+            background: var(--primary);
+            color: white;
+            padding: 15px;
+            font-weight: 600;
+        }
+        
+        .winner-body {
+            padding: 25px;
+        }
+        
+        .winner-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+            margin: 0 auto 15px;
+            background: var(--gray);
+        }
+        
+        .winner-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .winner-tier {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .winner-amount {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(to right, var(--primary), #002b4d);
+            color: white;
+            padding: 80px 0;
+        }
+        
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            background: white;
+            padding: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            background: var(--light);
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: background 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #94a3b8;
+        }
+        
+        .disclaimer {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #cbd5e1;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 40px;
+                text-align: center;
+            }
+            
+            .hero-text p {
+                margin: 0 auto 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+            
+            .hero-text h2 {
+                font-size: 36px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <h1>Dhansetu<span>.</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#challenges">Challenges</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#winners">Winners</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline">Login</a>
+                <a href="#" class="btn btn-primary">Register</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h2>Prove Your Trading Skills.<br>Win Real Rewards.</h2>
+                <p>Join India's most transparent skill-based trading competitions. No capital allocation, just pure trading skill evaluation and exciting rewards.</p>
+                <div class="cta-buttons">
+                    <a href="#challenges" class="btn btn-primary">Join Challenge</a>
+                    <a href="#how-it-works" class="btn btn-outline" style="background: white; color: var(--primary);">How It Works</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-card">
+                    <h3>Current Prize Pool</h3>
+                    <div class="prize-counter">₹18,75,000</div>
+                    <p style="text-align: center; margin-bottom: 20px;">Distributed to skilled traders this month</p>
+                    <div class="challenge-reward">
+                        <i class="fas fa-trophy"></i> Top Reward: ₹1,50,000
+                    </div>
+                    <a href="#challenges" class="btn btn-primary" style="width: 100%;">View Challenges</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Challenges Section -->
+    <section class="section" id="challenges">
+        <div class="container">
+            <div class="section-title">
+                <h2>Trading Challenges</h2>
+                <p>Choose your challenge tier and showcase your trading skills for exciting rewards</p>
+            </div>
+            <div class="challenges-container">
+                <!-- Elite Tier -->
+                <div class="challenge-card">
+                    <div class="challenge-header">
+                        <h3>Elite Challenge</h3>
+                        <div class="challenge-price">₹2,000</div>
+                    </div>
+                    <div class="challenge-body">
+                        <ul class="challenge-features">
+                            <li><i class="fas fa-check-circle"></i> Weekly competitions</li>
+                            <li><i class="fas fa-check-circle"></i> Advanced market data</li>
+                            <li><i class="fas fa-check-circle"></i> Priority support</li>
+                            <li><i class="fas fa-check-circle"></i> Comprehensive analytics</li>
+                            <li><i class="fas fa-check-circle"></i> 30-day access</li>
+                        </ul>
+                        <div class="challenge-reward">
+                            Reward Pool: ₹1,00,0000
+                        </div>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="openRazorpay(2000, 'Elite Challenge')">Join Challenge</button>
+                    </div>
+                </div>
+                
+                <!-- Pro Tier -->
+                <div class="challenge-card">
+                    <div class="challenge-header">
+                        <h3>Pro Challenge</h3>
+                        <div class="challenge-price">₹1,500</div>
+                    </div>
+                    <div class="challenge-body">
+                        <ul class="challenge-features">
+                            <li><i class="fas fa-check-circle"></i> Weekly competitions</li>
+                            <li><i class="fas fa-check-circle"></i> Real-time market data</li>
+                            <li><i class="fas fa-check-circle"></i> Dedicated support</li>
+                            <li><i class="fas fa-check-circle"></i> Performance analytics</li>
+                            <li><i class="fas fa-check-circle"></i> 30-day access</li>
+                        </ul>
+                        <div class="challenge-reward">
+                            Reward Pool: ₹600,000
+                        </div>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="openRazorpay(1500, 'Pro Challenge')">Join Challenge</button>
+                    </div>
+                </div>
+                
+                <!-- Standard Tier -->
+                <div class="challenge-card">
+                    <div class="challenge-header">
+                        <h3>Standard Challenge</h3>
+                        <div class="challenge-price">₹1,000</div>
+                    </div>
+                    <div class="challenge-body">
+                        <ul class="challenge-features">
+                            <li><i class="fas fa-check-circle"></i> Daily competitions</li>
+                            <li><i class="fas fa-check-circle"></i> Real-time market data</li>
+                            <li><i class="fas fa-check-circle"></i> Email support</li>
+                            <li><i class="fas fa-check-circle"></i> Basic analytics</li>
+                            <li><i class="fas fa-check-circle"></i> 30-day access</li>
+                        </ul>
+                        <div class="challenge-reward">
+                            Reward Pool: ₹350,000
+                        </div>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="openRazorpay(1000, 'Standard Challenge')">Join Challenge</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="challenges-container" style="margin-top: 30px;">
+                <!-- Rookie Tier -->
+                <div class="challenge-card">
+                    <div class="challenge-header">
+                        <h3>Rookie Challenge</h3>
+                        <div class="challenge-price">₹500</div>
+                    </div>
+                    <div class="challenge-body">
+                        <ul class="challenge-features">
+                            <li><i class="fas fa-check-circle"></i> Daily competitions</li>
+                            <li><i class="fas fa-check-circle"></i> Delayed market data</li>
+                            <li><i class="fas fa-check-circle"></i> Community support</li>
+                            <li><i class="fas fa-check-circle"></i> Basic analytics</li>
+                            <li><i class="fas fa-check-circle"></i> 30-day access</li>
+                        </ul>
+                        <div class="challenge-reward">
+                            Reward Pool: ₹50,000
+                        </div>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="openRazorpay(500, 'Rookie Challenge')">Join Challenge</button>
+                    </div>
+                </div>
+                
+                <!-- Practice Tier -->
+                <div class="challenge-card">
+                    <div class="challenge-header">
+                        <h3>Practice Challenge</h3>
+                        <div class="challenge-price">₹150</div>
+                    </div>
+                    <div class="challenge-body">
+                        <ul class="challenge-features">
+                            <li><i class="fas fa-check-circle"></i> Unlimited practice</li>
+                            <li><i class="fas fa-check-circle"></i> Historical data</li>
+                            <li><i class="fas fa-check-circle"></i> Learning resources</li>
+                            <li><i class="fas fa-check-circle"></i> Basic analytics</li>
+                            <li><i class="fas fa-check-circle"></i> Continuous access</li>
+                        </ul>
+                        <div class="challenge-reward">
+                            12000
+                        </div>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="openRazorpay(150, 'Practice Challenge')">Get Started</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>How Dhansetu Works</h2>
+                <p>Three simple steps to showcase your trading skills and win rewards</p>
+            </div>
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <i class="fas fa-user-check" style="font-size: 48px; color: var(--secondary);"></i>
+                    <h3>Register & Choose Challenge</h3>
+                    <p>Create your account and select a challenge tier that matches your skill level and goals.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <i class="fas fa-chart-line" style="font-size: 48px; color: var(--secondary);"></i>
+                    <h3>Trade in Simulator</h3>
+                    <p>Use our advanced trading simulator with real market data to execute your strategies.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <i class="fas fa-trophy" style="font-size: 48px; color: var(--secondary);"></i>
+                    <h3>Get Rewarded</h3>
+                    <p>Top performers receive cash rewards directly to their bank account within 24 hours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Winners Section -->
+    <section class="section" id="winners">
+        <div class="container">
+            <div class="section-title">
+                <h2>Recent Winners</h2>
+                <p>Meet the skilled traders who have excelled in our competitions</p>
+            </div>
+            <div class="winners-container">
+                <div class="winner-card">
+                    <div class="winner-header">Weekly Champion</div>
+                    <div class="winner-body">
+                        <div class="winner-avatar"></div>
+                        <div class="winner-name">Rajesh Kumar</div>
+                        <div class="winner-tier">Elite Challenge Winner</div>
+                        <div class="winner-amount">₹75,0000</div>
+                    </div>
+                </div>
+                
+                <div class="winner-card">
+                    <div class="winner-header">Daily Winner</div>
+                    <div class="winner-body">
+                        <div class="winner-avatar"></div>
+                        <div class="winner-name">Priya Sharma</div>
+                        <div class="winner-tier">Pro Challenge Winner</div>
+                        <div class="winner-amount">₹42,0000</div>
+                    </div>
+                </div>
+                
+                <div class="winner-card">
+                    <div class="winner-header">Rookie Star</div>
+                    <div class="winner-body">
+                        <div class="winner-avatar"></div>
+                        <div class="winner-name">Amit Patel</div>
+                        <div class="winner-tier">Rookie Challenge Winner</div>
+                        <div class="winner-amount">₹48,500</div>
+                    </div>
+                </div>
+                
+                <div class="winner-card">
+                    <div class="winner-header">Consistent Performer</div>
+                    <div class="winner-body">
+                        <div class="winner-avatar"></div>
+                        <div class="winner-name">Neha Gupta</div>
+                        <div class="winner-tier">Standard Challenge Winner</div>
+                        <div class="winner-amount">₹28,000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title" style="color: white;">
+                What Traders Say
+                <p>Success stories from our trading community</p>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    "Dhansetu gave me the platform to showcase my trading skills without needing capital. Winning the Elite Challenge validated my strategies and gave me the confidence to pursue trading professionally."
+                </div>
+                <div class="testimonial-author">
+                    <div style="width: 50px; height: 50px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <span style="color: var(--primary); font-weight: bold;">VK</span>
+                    </div>
+                    <div>
+                        <div style="font-weight: bold;">Vikram K.</div>
+                        <div>Elite Challenge Winner</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section" id="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Get answers to common questions about our platform</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is Dhansetu? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Dhansetu is a skill-based trading competition platform where traders can showcase their skills in simulated market environments. Participants pay an entry fee to join challenges, and top performers win cash rewards based on their trading performance.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is real money trading involved? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        No, all trading activities on Dhansetu are conducted in a simulated environment using virtual funds. We do not manage real client funds or provide investment services.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How are rewards distributed? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Cash rewards are distributed via UPI or bank transfer to top performers within 24 hours of challenge completion. All rewards are subject to applicable TDS deductions under Indian tax laws.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What markets can I trade? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Our simulator provides access to major Indian and global markets including NSE equities, commodities, currencies, and international indices. The specific instruments available depend on the challenge tier.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Is Dhansetu registered with SEBI? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Dhansetu operates as a skill-based competition platform and does not provide investment advisory or portfolio management services. As such, SEBI registration is not applicable to our business model. We are a registered company in India focused on trading skill development and competitions or no money refundable 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>Dhansetu</h3>
+                    <p>Skill-based trading competitions platform where talent meets reward.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#challenges">Challenges</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#winners">Winners</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                        <li><a href="#">Competition Rules</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> dhansetu07@gmail.com          </li>
+                        <li><i class="fas fa-phone"></i> +91 9772792596 +91 7877673829
+                        </li>
+                        <li><i class="fas fa-map-marker-alt"></i> Mumbai, Maharashtra, India</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="disclaimer">
+                <p><strong>Disclaimer:</strong> Dhansetu is a skill-based competition platform. We are not registered with SEBI. All trading activities are conducted in a simulated environment with virtual funds. Participants pay entry fees to compete for rewards based on skill evaluation. Past performance is not indicative of future results.</p>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Dhansetu Trading Competitions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ toggle functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+        
+        // Razorpay payment integration
+        function openRazorpay(amount, challenge) {
+            const options = {
+                "key": "rzp_test_1DP5mmOlF5G5ag",
+                "amount": amount * 100,
+                "currency": "INR",
+                "name": "Dhansetu Trading Competition",
+                "description": `Payment for ${challenge}`,
+                "image": "https://example.com/your_logo.jpg",
+                "handler": function(response) {
+                    alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
+                    // Here you would redirect to the challenge page or dashboard
+                },
+                "prefill": {
+                    "name": "User Name",
+                    "email": "user@example.com",
+                    "contact": "9999999999"
+                },
+                "theme": {
+                    "color": "#008080"
+                }
+            };
+            
+            const rzp = new Razorpay(options);
+            rzp.open();
+        }
+        
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
